@@ -1,0 +1,65 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+    <link rel="icon" href="{% static 'favicon.ico' %}">
+<head>
+    <meta charset="UTF-8">
+    <title>Payment Success</title>
+    
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            color: #2d6a4f;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        a {
+            display: inline-block;
+            margin: 10px 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #2d6a4f;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        a:hover {
+            background-color: #1b4332;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Payment Successful</h1>
+        <p>Your payment was successful. Thank you for your payment!</p>
+        <a href="{{ invoice_path }}" download>Download Invoice</a>
+        <a href="{% url 'home' %}">Go to Home</a>
+    </div>
+</body>
+</html>

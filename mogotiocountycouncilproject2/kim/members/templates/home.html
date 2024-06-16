@@ -1,0 +1,206 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="icon" href="{% static 'favicon.ico' %}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url("{% static 'back.jpeg' %}");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(48, 197, 11, 0.8);
+            padding: 1rem;
+            position: relative; /* Add this line */
+        }
+
+        .navbar a {
+            color: rgb(15, 1, 1);
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+        }
+
+        .navbar a:hover {
+            background-color: #d6660a;
+        }
+
+        .content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: calc(100vh - 60px);
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .container {
+            width: 45%;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .container h2 {
+            margin-top: 0;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #218838;
+        }
+
+        .navbar-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-right p {
+            margin: 0 1rem 0 0;
+            color: white;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content p {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            margin: 0;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .messages {
+            padding: 10px;
+            margin-bottom: 20px;
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            border-radius: 4px;
+            color: #856404;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 1rem;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar-left">
+            <div class="dropdown">
+                <a class="btn">About</a>
+                <div class="dropdown-content">
+                    <p>We are located in Mogotio town on your way to Mogotio Subcounty Hospital.</p>
+                </div>
+            </div>
+            <div class="dropdown">
+                <a class="btn">Contacts</a>
+                <div class="dropdown-content">
+                    <p>+254792600430</p>
+                </div>
+            </div>
+            {% if request.user.is_authenticated %}
+                <p>{{ request.user.username }}</p>
+                <a href="{% url 'logout' %}">Logout</a>
+            {% else %}
+                <a href="{% url 'login' %}">Login</a>
+                <a href="{% url 'signup' %}">Signup</a>
+            {% endif %}
+        </div>
+        <div class="navbar-right">
+            <!-- You can add other content here if needed -->
+        </div>
+        {% if messages %}
+            {% for message in messages %}
+                <p class="messages">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+    </div>
+
+    <div class="content">
+        <div class="container">
+            <h2>Vendor Payment</h2>
+            <p>Price: 1 Shillings</p>
+            <form method="GET" action="{% url 'payment' %}">
+                <input type="hidden" name="payment_type" value="vendor">
+                <button class="btn" type="submit">Pay</button>
+            </form>
+        </div>
+        <div class="container">
+            <h2>Cess Collection</h2>
+            <p>Price: 50 Shillings</p>
+            <form method="GET" action="{% url 'payment' %}">
+                <input type="hidden" name="payment_type" value="cess">
+                <button class="btn" type="submit">Pay</button>
+            </form>
+        </div>
+        <div class="container">
+            <h2>Rental Tax</h2>
+            <p>Price: 1200 Shillings</p>
+            <form method="GET" action="{% url 'payment' %}">
+                <input type="hidden" name="payment_type" value="rental_tax">
+                <button class="btn" type="submit">Pay</button>
+            </form>
+        </div>
+        <div class="container">
+            <h2>Business Permit</h2>
+            <p>Price: 1000 Shillings</p>
+            <form method="GET" action="{% url 'payment' %}">
+                <input type="hidden" name="payment_type" value="business_permit">
+                <button class="btn" type="submit">Pay</button>
+            </form>
+        </div>
+        <div class="container">
+            <h2>Land Tax</h2>
+            <p>Price: 2000 Shillings</p>
+            <form method="GET" action="{% url 'payment' %}">
+                <input type="hidden" name="payment_type" value="Land_tax">
+                <button class="btn" type="submit">Pay</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
