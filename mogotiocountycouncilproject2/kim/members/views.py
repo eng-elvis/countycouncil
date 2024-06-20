@@ -25,10 +25,10 @@ from django.http import Http404
 
 
 # M-Pesa credentials
-MPESA_CONSUMER_KEY = '9IZakJbYn1kJBN31oTARs9uAvBlSqcXncqy71lQGAWKocqOx'
-MPESA_CONSUMER_SECRET = '797qJZfiroZd21Edsvv8CDz97BScBK2PYjZ0nZa1BV7lxbl2yjyNYZor9qQlfA6Z'
-MPESA_SHORTCODE = '174379'
-MPESA_PASSKEY = 'bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919'
+MPESA_CONSUMER_KEY = ''
+MPESA_CONSUMER_SECRET = ''
+MPESA_SHORTCODE = ''
+MPESA_PASSKEY = ''
 
 # Function to get M-Pesa OAuth token
 def get_mpesa_token():
@@ -45,16 +45,16 @@ def stk_push(number, amount, description):
     password = base64.b64encode((MPESA_SHORTCODE + MPESA_PASSKEY + timestamp).encode()).decode('utf-8')
     
     payload = {
-        "BusinessShortCode": 174379,
-        "Password": "MTc0Mzc5YmZiMjc5ZjlhYTliZGJjZjE1OGU5N2RkNzFhNDY3Y2QyZTBjODkzMDU5YjEwZjc4ZTZiNzJhZGExZWQyYzkxOTIwMjQwNjEwMTcwNzI3",
+        "BusinessShortCode": ,
+        "Password": "",
         "Timestamp": "20240610170727",
         "TransactionType": "CustomerPayBillOnline",
         "Amount": amount,
-        "PartyA": 254725373427,
-        "PartyB": 174379,
+        "PartyA": ,
+        "PartyB": ,
         "PhoneNumber": number,
         "CallBackURL": "https://yourdomain.com/payment/callback",
-        "AccountReference": "kim",
+        "AccountReference": "",
         "TransactionDesc": description
     }
 
